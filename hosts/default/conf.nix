@@ -80,6 +80,7 @@
         hyprshot
         libgcc
         tree
+        (callPackage ../../pkgs/sddm-theme.nix).sddm-sugar.dark
 	];
 
 	programs.hyprland.enable = true;

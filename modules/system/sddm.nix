@@ -8,4 +8,6 @@
   services.xserver.enable = true;
 
   services.displayManager.defaultSession = "hyprland";
+
+  services.xserver.displayManager.sddm.theme = "sddm-sugar-dark";
 }
