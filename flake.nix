@@ -31,6 +31,7 @@
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         ./hosts/default/conf.nix
         ./modules/system/nvidia.nix
+        ./modules/system/sddm.nix
       ];
     };
 

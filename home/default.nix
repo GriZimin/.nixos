@@ -9,20 +9,17 @@
     home.username = "grizimin";
     home.homeDirectory = "/home/grizimin";
 
-    # This value determines the Home Manager release that your configuration is
-    # compatible with. This helps avoid breakage when a new Home Manager release
-    # introduces backwards incompatible changes.
-    #
-    # You should not change this value, even if you update Home Manager. If you do
-    # want to update the value, then make sure to first check the Home Manager
-    # release notes.
-    home.stateVersion = "24.11"; # Please read the comment before changing.
+    home.stateVersion = "24.11"; 
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
-    home.packages = [
-        pkgs.betaflight-configurator
-    ];
+    ### THEME
+
+    gtk.enable = true;
+    gtk.theme.package = pkgs.adw-gtk3;
+    gtk.theme.name = "adw-gtk3";
+
+    qt.enable = true;
+    qt.platformTheme = "gtk";
+    qt.style.name = "adwaita-dark";
 
     home.pointerCursor = {
         package = pkgs.bibata-cursors;
@@ -32,17 +29,18 @@
         x11.enable = true;
     };
 
-    # Home Manager is pretty good at managing dotfiles. The primary way to manage
-    # plain files is through 'home.file'.
     home.file = {
         ".config/ghostty/config".source = ../dotfiles/ghostty/config;
     };
 
     home.sessionVariables = {
-        EDITOR = "neovim";
+        EDITOR = "nvim";
     };
 
+    ### PROGRAMS
 
+    home.packages = [
+    ];
 
     programs.zsh = {
         enable = true;
