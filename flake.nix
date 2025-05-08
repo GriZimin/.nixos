@@ -29,7 +29,7 @@
         
       modules = [
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
-        ./configuration.nix
+        ./hosts/default/conf.nix
         ./modules/system/nvidia.nix
 
         home-manager.nixosModules.home-manager
