@@ -7,5 +7,5 @@
 
   services.xserver.enable = true;
 
-  services.xserver.displayManager.defaultSession = "hyprland";
+  services.displayManager.defaultSession = "hyprland";
 }
