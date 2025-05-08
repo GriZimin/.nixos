@@ -31,15 +31,15 @@
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         ./hosts/default/conf.nix
         ./modules/system/nvidia.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useUserPackages = true;
-          home-manager.users.grizimin = import ./home/default.nix;
-        }
       ];
-
-    
     };
+
+    homeConfigurations = {
+      grizimin = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home/default.nix ];
+      };
+    };
+
   };
 }

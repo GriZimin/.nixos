@@ -82,6 +82,7 @@
         capitaine-cursors
         hyprshot
         libgcc
+        tree
 	];
 
 	programs.hyprland.enable = true;
