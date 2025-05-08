@@ -20,7 +20,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
 
   in {
-    nixosConfigurations.nixzimin = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit system;
         inherit inputs;
@@ -39,6 +39,7 @@
         }
       ];
 
+    
     };
   };
 }
