@@ -1,12 +1,10 @@
 { lib
-, qtbase
-, qtsvg
-, qtgraphicaleffects
-, qtquickcontrols2
-, wrapQtAppsHook
 , stdenvNoCC
 , fetchFromGitHub
+, pkgs
+, libsForQt5
 }:
+with libsForQt5;
 stdenvNoCC.mkDerivation
 rec {
   pname = "tokyo-night-sddm";

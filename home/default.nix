@@ -40,6 +40,7 @@
     ### PROGRAMS
 
     home.packages = [
+        discord-ptb
     ];
 
     programs.zsh = {
