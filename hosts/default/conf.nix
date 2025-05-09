@@ -12,20 +12,17 @@
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    programs.zsh.enable = true;
-
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
     boot.loader.timeout = 10;
 	boot.loader.efi.canTouchEfiVariables = true;
 
 	networking.hostName = "nixzimin"; 
+	networking.proxy.default = "127.0.0.1:2080";
     # networking.wireless.enable = true;  
-	# networking.proxy.default = "127.0.0.1:2080";
 
 	# Enable networking
 	networking.networkmanager.enable = true;
-
 	# Set your time zone.
 	time.timeZone = "Asia/Yekaterinburg";
 
@@ -50,16 +47,15 @@
 		description = "grizimin";
 		extraGroups = [ "networkmanager" "wheel" ];
 		packages = with pkgs; [];
+        shell = pkgs.zsh;
 	};
 
-	# Allow unfree packages
 	nixpkgs.config.allowUnfree = true;
 
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
         home-manager
-		neovim 		
         wget
 		git
 		firefox
@@ -80,10 +76,14 @@
         hyprshot
         libgcc
         tree
+        legcord
 	];
 
 	programs.hyprland.enable = true;
 	programs.thunar.enable = true;
+
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
 
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
