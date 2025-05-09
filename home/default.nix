@@ -1,13 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    imports = [
-        ../modules/home/hyprland.nix
-    ];
-
-    home.username = "grizimin";
-    home.homeDirectory = "/home/grizimin";
-
     ### THEME
 
     #gtk.enable = true;
@@ -32,8 +25,8 @@
         ".config/rofi/theme.rasi".source = ../dotfiles/rofi/theme.rasi;
         ".config/rofi/onedark.rasi".source = ../dotfiles/rofi/onedark.rasi;
     };
+
     home.sessionVariables = {
-        NIXPKGS_ALLOW_UNFREE = "1";
         EDITOR = "nvim";
     };
 
@@ -41,17 +34,9 @@
 
     home.stateVersion = "24.11"; 
 
-    home.packages = with pkgs; [
-        jetbrains.clion
-        libsecret
-    ];
 
     programs.neovim = {
         enable = true;
-
-        viAlias = true;
-        vimAlias = true;
-        vimdiffAlias = true;
     };
 
     programs.zsh = {
@@ -74,16 +59,8 @@
         history.size = 10000;
     };
 
+    programs.git.enable = true;
 
-
-    programs.git = {
-        enable = true;
-        extraConfig = {
-            credential = {
-              helper = "libsecret";
-            };
-        };
-    };
 
     programs.home-manager.enable = true;
 }

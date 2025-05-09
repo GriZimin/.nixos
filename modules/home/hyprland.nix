@@ -9,6 +9,7 @@
         kitty
         rofi-wayland
         swww
+        hyprshot
         wl-clipboard
     ];
 }

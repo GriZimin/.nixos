@@ -32,6 +32,7 @@
         ./hosts/default/conf.nix
         ./modules/system/nvidia.nix
         ./modules/system/sddm.nix
+        ./modules/system/singbox.nix
       ];
     };
 
@@ -41,7 +42,10 @@
           system = "x86_64-linux";
           config.allowUnfree = true;  
         };
-        modules = [ ./home/default.nix ];
+        modules = [ 
+            ./home/grizimin.nix 
+            ./modules/home/hyprland.nix
+        ];
       };
     };
 
