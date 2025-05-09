@@ -30,6 +30,7 @@
         ".config/ghostty/config".source = ../dotfiles/ghostty/config;
         ".config/rofi/config.rasi".source = ../dotfiles/rofi/config.rasi;
         ".config/rofi/theme.rasi".source = ../dotfiles/rofi/theme.rasi;
+        ".config/rofi/onedark.rasi".source = ../dotfiles/rofi/onedark.rasi;
     };
     home.sessionVariables = {
         NIXPKGS_ALLOW_UNFREE = "1";
@@ -42,6 +43,7 @@
 
     home.packages = with pkgs; [
         jetbrains.clion
+        libsecret
     ];
 
     programs.neovim = {
@@ -76,6 +78,11 @@
 
     programs.git = {
         enable = true;
+        extraConfig = {
+            credential = {
+              helper = "libsecret";
+            };
+        };
     };
 
     programs.home-manager.enable = true;
