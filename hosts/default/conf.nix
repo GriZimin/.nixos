@@ -76,6 +76,7 @@
         libgcc
         tree
         legcord
+        pkgs.python3
 	];
 
 	programs.hyprland.enable = true;
