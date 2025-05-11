@@ -3,21 +3,12 @@
 {
     ### THEME
 
-    #gtk.enable = true;
+    gtk.enable = true;
     #gtk.theme.package = pkgs.adw-gtk3;
     #gtk.theme.name = "adw-gtk3";
 
-    #qt.enable = true;
-    #qt.platformTheme = "gtk";
-    #qt.style.name = "adwaita-dark";
-
-    home.pointerCursor = {
-        package = pkgs.bibata-cursors;
-        name = "Capitaine Cursors";
-        size = 24;
-        gtk.enable = true;
-        x11.enable = true;
-    };
+    qt.enable = true;
+    qt.platformTheme.name = "gtk";
 
     home.file = {
         ".config/ghostty/config".source = ../dotfiles/ghostty/config;
@@ -26,14 +17,18 @@
         ".config/rofi/onedark.rasi".source = ../dotfiles/rofi/onedark.rasi;
     };
 
+    home.pointerCursor = {
+        gtk.enable = true; 
+        x11.enable = true;
+    };
+
     home.sessionVariables = {
         EDITOR = "nvim";
+        XCURSOR_THEME = "Bibata-Modern-Ice";
+        XCURSOR_SIZE = "24";
     };
 
     ### PROGRAMS
-
-    home.stateVersion = "24.11"; 
-
 
     programs.neovim = {
         enable = true;
@@ -61,6 +56,6 @@
 
     programs.git.enable = true;
 
-
     programs.home-manager.enable = true;
+    home.stateVersion = "24.11"; 
 }

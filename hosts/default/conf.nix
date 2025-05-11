@@ -10,6 +10,12 @@
         ./hardware-configuration.nix
 	];
 
+    home-manager.sharedModules = [
+      {
+        stylix.autoEnable = true;
+      }
+    ];
+
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 	# Bootloader.
@@ -65,18 +71,18 @@
 		gtk2
 		gtk3
 		gtk4
-		hiddify-app
 		unzip
 		zip
         hyprpanel
         sing-box
         bibata-cursors
-        catppuccin-cursors.macchiatoBlue
-        capitaine-cursors
         libgcc
         tree
         legcord
-        pkgs.python3
+        python3
+        gcc
+        bat
+        neofetch
 	];
 
 	programs.hyprland.enable = true;
@@ -86,7 +92,7 @@
     users.defaultUserShell = pkgs.zsh;
 
     fonts.packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
+        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
     ];
 
 	system.stateVersion = "24.11"; 

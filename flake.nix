@@ -1,20 +1,20 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     
-    # Hyprpanel
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     
-    # For community packages
     nur.url = "github:nix-community/NUR";
     
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";  
     };
+
+    stylix.url = "github:danth/stylix/release-24.11";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprpanel, nur, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprpanel, nur, stylix, ... }@inputs: 
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -25,10 +25,15 @@
         inherit system;
         inherit inputs;
       };
-
         
       modules = [
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
+
+        home-manager.nixosModules.home-manager
+
+        stylix.nixosModules.stylix
+        ./modules/system/stylix.nix
+
         ./hosts/default/conf.nix
         ./modules/system/nvidia.nix
         ./modules/system/sddm.nix
@@ -43,8 +48,10 @@
           config.allowUnfree = true;  
         };
         modules = [ 
+            stylix.homeManagerModules.stylix
             ./home/grizimin.nix 
             ./modules/home/hyprland.nix
+            ./modules/home/stylix.nix
         ];
       };
     };
