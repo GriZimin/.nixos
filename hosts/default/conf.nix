@@ -79,6 +79,7 @@
         gcc
         bat
         neofetch
+        nixfmt-rfc-style             
 	];
 
 	programs.thunar.enable = true;

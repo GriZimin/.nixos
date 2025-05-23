@@ -4,7 +4,7 @@
     stylix.enable = true;
     stylix.autoEnable = true;
 
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/shadesmear-dark.yaml";
     stylix.image = ../../dotfiles/wallpapers/nixos.png;
     stylix.polarity = "dark";
 
