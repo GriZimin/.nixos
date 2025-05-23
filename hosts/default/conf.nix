@@ -8,23 +8,19 @@
 	imports =
 	[ 	
         ./hardware-configuration.nix
+        ../../modules/system/hyprland.nix
+        ../../modules/home/stylix.nix
+        ../../modules/system/nvidia.nix
+        ../../modules/system/sddm.nix
+        ../../modules/system/singbox.nix
+        ../../modules/system/bootloader.nix
 	];
-
-    home-manager.sharedModules = [
-      {
-        stylix.autoEnable = true;
-      }
-    ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-	# Bootloader.
-	boot.loader.systemd-boot.enable = true;
-    boot.loader.timeout = 10;
-	boot.loader.efi.canTouchEfiVariables = true;
 
 	networking.hostName = "nixzimin"; 
-	networking.proxy.default = "127.0.0.1:2080";
+	#networking.proxy.default = "127.0.0.1:2080";
     # networking.wireless.enable = true;  
 
 	# Enable networking
@@ -85,7 +81,6 @@
         neofetch
 	];
 
-	programs.hyprland.enable = true;
 	programs.thunar.enable = true;
 
     programs.zsh.enable = true;

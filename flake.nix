@@ -12,9 +12,11 @@
     };
 
     stylix.url = "github:danth/stylix/release-24.11";
+
+    nixvim.url = "github:grizimin/.nixvim";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprpanel, nur, stylix, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprpanel, nur, stylix, nixvim, ... }@inputs: 
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -28,16 +30,16 @@
         
       modules = [
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
-
         home-manager.nixosModules.home-manager
-
         stylix.nixosModules.stylix
-        ./modules/system/stylix.nix
 
         ./hosts/default/conf.nix
-        ./modules/system/nvidia.nix
-        ./modules/system/sddm.nix
-        ./modules/system/singbox.nix
+
+	{
+	    environment.systemPackages = [
+	    	inputs.nixvim.packages."x86_64-linux".default
+	    ];
+	}
       ];
     };
 
@@ -50,8 +52,6 @@
         modules = [ 
             stylix.homeManagerModules.stylix
             ./home/grizimin.nix 
-            ./modules/home/hyprland.nix
-            ./modules/home/stylix.nix
         ];
       };
     };
