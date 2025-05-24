@@ -5,91 +5,100 @@
 { config, pkgs, ... }:
 
 {
-	imports =
-	[ 	
-        ./hardware-configuration.nix
-        ../../modules/system/hyprland.nix
-        ../../modules/home/stylix.nix
-        ../../modules/system/nvidia.nix
-        ../../modules/system/sddm.nix
-        ../../modules/system/singbox.nix
-        ../../modules/system/bootloader.nix
-	];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/system/hyprland.nix
+    ../../modules/home/stylix.nix
+    ../../modules/system/nvidia.nix
+    ../../modules/system/sddm.nix
+    ../../modules/system/singbox.nix
+    ../../modules/system/bootloader.nix
+    ../../modules/system/pipewire.nix
+  ];
 
-	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
+  networking.hostName = "nixzimin";
+  #networking.proxy.default = "127.0.0.1:2080";
+  #networking.wireless.enable = true;
 
-	networking.hostName = "nixzimin"; 
-	#networking.proxy.default = "127.0.0.1:2080";
-    # networking.wireless.enable = true;  
+  # Enable networking
+  networking.networkmanager.enable = true;
+  # Set your time zone.
+  time.timeZone = "Asia/Yekaterinburg";
 
-	# Enable networking
-	networking.networkmanager.enable = true;
-	# Set your time zone.
-	time.timeZone = "Asia/Yekaterinburg";
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-	# Select internationalisation properties.
-	i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "ru_RU.UTF-8";
+    LC_IDENTIFICATION = "ru_RU.UTF-8";
+    LC_MEASUREMENT = "ru_RU.UTF-8";
+    LC_MONETARY = "ru_RU.UTF-8";
+    LC_NAME = "ru_RU.UTF-8";
+    LC_NUMERIC = "ru_RU.UTF-8";
+    LC_PAPER = "ru_RU.UTF-8";
+    LC_TELEPHONE = "ru_RU.UTF-8";
+    LC_TIME = "ru_RU.UTF-8";
+  };
 
-	i18n.extraLocaleSettings = {
-		LC_ADDRESS = "ru_RU.UTF-8";
-		LC_IDENTIFICATION = "ru_RU.UTF-8";
-		LC_MEASUREMENT = "ru_RU.UTF-8";
-		LC_MONETARY = "ru_RU.UTF-8";
-		LC_NAME = "ru_RU.UTF-8";
-		LC_NUMERIC = "ru_RU.UTF-8";
-		LC_PAPER = "ru_RU.UTF-8";
-		LC_TELEPHONE = "ru_RU.UTF-8";
-		LC_TIME = "ru_RU.UTF-8";
-	};
-
-	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.grizimin = {
-		isNormalUser = true;
-		description = "grizimin";
-		extraGroups = [ "networkmanager" "wheel" ];
-		packages = with pkgs; [];
-        shell = pkgs.zsh;
-	};
-
-	nixpkgs.config.allowUnfree = true;
-
-	# List packages installed in system profile. To search, run:
-	# $ nix search wget
-	environment.systemPackages = with pkgs; [
-        home-manager
-        wget
-		git
-		firefox
-		rofi-wayland
-		ghostty
-		telegram-desktop
-		gtk2
-		gtk3
-		gtk4
-		unzip
-		zip
-        hyprpanel
-        sing-box
-        bibata-cursors
-        libgcc
-        tree
-        legcord
-        python3
-        gcc
-        bat
-        neofetch
-        nixfmt-rfc-style             
-	];
-
-	programs.thunar.enable = true;
-
-    programs.zsh.enable = true;
-    users.defaultUserShell = pkgs.zsh;
-
-    fonts.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.grizimin = {
+    isNormalUser = true;
+    description = "grizimin";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    packages = with pkgs; [ ];
+    shell = pkgs.zsh;
+  };
 
-	system.stateVersion = "24.11"; 
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    home-manager
+    wget
+    git
+    firefox
+    rofi-wayland
+    ghostty
+    telegram-desktop
+    gtk2
+    gtk3
+    gtk4
+    unzip
+    zip
+    hyprpanel
+    sing-box
+    libgcc
+    tree
+    legcord
+    python3
+    gcc
+    bat
+    neofetch
+    nixfmt-rfc-style
+  ];
+
+  programs.thunar.enable = true;
+
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "JetBrainsMono"
+      ];
+    })
+  ];
+
+  system.stateVersion = "24.11";
 }

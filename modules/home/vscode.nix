@@ -99,7 +99,7 @@
           "before" = [
             "leader"
             "t"
-          ]
+          ];
           "commands" = [ "workbench.action.terminal.focus" ];
         }
         {
