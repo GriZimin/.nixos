@@ -14,6 +14,7 @@
     ../../modules/system/singbox.nix
     ../../modules/system/bootloader.nix
     ../../modules/system/pipewire.nix
+    ../../modules/system/bluetooth.nix
   ];
 
   nix.settings.experimental-features = [

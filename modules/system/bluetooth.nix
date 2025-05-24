@@ -3,9 +3,7 @@
 {
   hardware.bluetooth = {
     enable = true;
-    settings = {
-      Experimental = true;
-    };
+    settings.General.Experimental = true;
   };
 
   systemd.user.services.mpris-proxy = {
